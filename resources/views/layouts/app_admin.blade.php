@@ -49,6 +49,21 @@
                                 </li>
                             @endif
                         @else
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('administration') }}">{{ __('Home') }}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('admin.cv') }}">{{ __('Curriculum Vitae') }}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('admin.company') }}">{{ __('Company') }}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('admin.vacancy') }}">{{ __('Vacancy') }}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('admin.user') }}">{{ __('User') }}</a>
+                            </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
@@ -65,21 +80,6 @@
                                         @csrf
                                     </form>
                                 </div>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('administration') }}">{{ __('Home') }}</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('admin.company') }}">{{ __('Company') }}</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('admin.cv') }}">{{ __('Curriculum Vitae') }}</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('admin.vacancy') }}">{{ __('Vacancy') }}</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('admin.user') }}">{{ __('User') }}</a>
                             </li>
                         @endguest
                     </ul>

@@ -15,6 +15,8 @@ class CreateVacanciesTable extends Migration
     {
         Schema::create('vacancies', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('title');
+            $table->string('description');
             $table->timestamps();
         });
     }

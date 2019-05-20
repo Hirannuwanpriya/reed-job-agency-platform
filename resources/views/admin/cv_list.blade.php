@@ -16,6 +16,7 @@
 
                     You are in CV create!
                     <h1>Curriculum Vitae List</h1>
+                        <a href="{{url('cv/generator')}}" class="btn btn-primary">Generate Cv</a>
                 </div>
             </div>
         </div>
