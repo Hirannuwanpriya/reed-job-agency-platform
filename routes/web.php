@@ -42,6 +42,18 @@ Route::get('/admin', [
 //    'middleware' => ['auth:admin'],
     'middleware' => ['admin:super_admin', 'auth:admin'],
     'uses' => function () {
-        return 'ela';
+        return view('admin/home');
     }
+]);
+
+Route::get('/admin/company', [
+    'as' => 'admin.company',
+    'middleware' => ['admin:super_admin', 'auth:admin'],
+    'uses' => 'CompanyController@index'
+]);
+
+Route::get('/admin/company/add', [
+    'as' => 'admin.company.add',
+    'middleware' => ['admin:super_admin', 'auth:admin'],
+    'uses' => 'CompanyController@create'
 ]);
