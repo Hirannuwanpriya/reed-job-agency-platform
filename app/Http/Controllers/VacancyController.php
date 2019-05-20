@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Administrator;
+use App\Vacancy;
 use Illuminate\Http\Request;
 
-class AdministratorController extends Controller
+class VacancyController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,7 @@ class AdministratorController extends Controller
     public function index()
     {
         //
-        return view('user.list');
+        return view('vacancy.list');
     }
 
     /**
@@ -26,7 +26,7 @@ class AdministratorController extends Controller
     public function create()
     {
         //
-        return view('user.create');
+        return view('vacancy.create');
     }
 
     /**
@@ -43,10 +43,10 @@ class AdministratorController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Administrator  $administrator
+     * @param  \App\Vacancy  $vacancy
      * @return \Illuminate\Http\Response
      */
-    public function show(Administrator $administrator)
+    public function show(Vacancy $vacancy)
     {
         //
     }
@@ -54,10 +54,10 @@ class AdministratorController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Administrator  $administrator
+     * @param  \App\Vacancy  $vacancy
      * @return \Illuminate\Http\Response
      */
-    public function edit(Administrator $administrator)
+    public function edit(Vacancy $vacancy)
     {
         //
     }
@@ -66,10 +66,10 @@ class AdministratorController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Administrator  $administrator
+     * @param  \App\Vacancy  $vacancy
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Administrator $administrator)
+    public function update(Request $request, Vacancy $vacancy)
     {
         //
     }
@@ -77,10 +77,10 @@ class AdministratorController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Administrator  $administrator
+     * @param  \App\Vacancy  $vacancy
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Administrator $administrator)
+    public function destroy(Vacancy $vacancy)
     {
         //
     }

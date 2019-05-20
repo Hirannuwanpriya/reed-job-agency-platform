@@ -16,8 +16,6 @@ class CurriculumVitaeController extends Controller
     {
         //
     
-
-    
     }
 
     /**

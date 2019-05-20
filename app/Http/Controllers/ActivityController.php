@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Administrator;
+use App\Activity;
 use Illuminate\Http\Request;
 
-class AdministratorController extends Controller
+class ActivityController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,7 @@ class AdministratorController extends Controller
     public function index()
     {
         //
-        return view('user.list');
+        return view('user.activity');
     }
 
     /**
@@ -26,7 +26,6 @@ class AdministratorController extends Controller
     public function create()
     {
         //
-        return view('user.create');
     }
 
     /**
@@ -43,10 +42,10 @@ class AdministratorController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Administrator  $administrator
+     * @param  \App\Activity  $activity
      * @return \Illuminate\Http\Response
      */
-    public function show(Administrator $administrator)
+    public function show(Activity $activity)
     {
         //
     }
@@ -54,10 +53,10 @@ class AdministratorController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Administrator  $administrator
+     * @param  \App\Activity  $activity
      * @return \Illuminate\Http\Response
      */
-    public function edit(Administrator $administrator)
+    public function edit(Activity $activity)
     {
         //
     }
@@ -66,10 +65,10 @@ class AdministratorController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Administrator  $administrator
+     * @param  \App\Activity  $activity
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Administrator $administrator)
+    public function update(Request $request, Activity $activity)
     {
         //
     }
@@ -77,10 +76,10 @@ class AdministratorController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Administrator  $administrator
+     * @param  \App\Activity  $activity
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Administrator $administrator)
+    public function destroy(Activity $activity)
     {
         //
     }

@@ -72,6 +72,15 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('admin.company') }}">{{ __('Company') }}</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('admin.cv') }}">{{ __('Curriculum Vitae') }}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('admin.vacancy') }}">{{ __('Vacancy') }}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('admin.user') }}">{{ __('User') }}</a>
+                            </li>
                         @endguest
                     </ul>
                 </div>
