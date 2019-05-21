@@ -16,8 +16,6 @@ class CurriculumVitaeController extends Controller
     {
         //
     
-
-    
     }
 
     /**
@@ -28,6 +26,7 @@ class CurriculumVitaeController extends Controller
     public function create()
     {
         //
+        return view('cv/create');
     }
 
     /**
@@ -50,6 +49,7 @@ class CurriculumVitaeController extends Controller
     public function show(CurriculumVitae $curriculumVitae)
     {
         //
+        
     }
 
     /**
@@ -61,6 +61,7 @@ class CurriculumVitaeController extends Controller
     public function edit(CurriculumVitae $curriculumVitae)
     {
         //
+        return view('cv/edit');
     }
 
     /**

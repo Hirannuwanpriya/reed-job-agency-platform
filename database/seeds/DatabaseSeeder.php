@@ -13,7 +13,6 @@ class DatabaseSeeder extends Seeder
     {
         // $this->call(UsersTableSeeder::class);
 
-
         $admin = (new \App\Models\Auth\Administrator())->create([
             'name' => 'Administrator',
             'email' => 'admin@admin.com',
@@ -42,6 +41,12 @@ class DatabaseSeeder extends Seeder
 
         $admin->roles()->attach($role);
 
+        
+        
+        
+        
+        
+        
 
 
     }

@@ -42,6 +42,60 @@ Route::get('/admin', [
 //    'middleware' => ['auth:admin'],
     'middleware' => ['admin:super_admin', 'auth:admin'],
     'uses' => function () {
-        return 'ela';
+        return view('admin/home');
     }
+]);
+
+Route::get('/admin/company', [
+    'as' => 'admin.company',
+    'middleware' => ['admin:super_admin', 'auth:admin'],
+    'uses' => 'CompanyController@index'
+]);
+
+Route::get('/admin/company/add', [
+    'as' => 'admin.company.add',
+    'middleware' => ['admin:super_admin', 'auth:admin'],
+    'uses' => 'CompanyController@create'
+]);
+
+Route::get('/admin/curriculum-vitae', [
+    'as' => 'admin.cv',
+    'middleware' => ['admin:super_admin', 'auth:admin'],
+    'uses' => 'AdminCurriculumVitaeController@index'
+]);
+
+Route::get('/admin/vacancy', [
+    'as' => 'admin.vacancy',
+    'middleware' => ['admin:super_admin', 'auth:admin'],
+    'uses' => 'VacancyController@index'
+]);
+
+Route::get('/admin/vacancy/add', [
+    'as' => 'admin.vacancy.add',
+    'middleware' => ['admin:super_admin', 'auth:admin'],
+    'uses' => 'VacancyController@create'
+]);
+
+Route::get('/admin/user', [
+    'as' => 'admin.user',
+    'middleware' => ['admin:super_admin', 'auth:admin'],
+    'uses' => 'AdministratorController@index'
+]);
+
+Route::get('/admin/user/add', [
+    'as' => 'admin.user.add',
+    'middleware' => ['admin:super_admin', 'auth:admin'],
+    'uses' => 'AdministratorController@create'
+]);
+
+Route::get('/admin/user/edit', [
+    'as' => 'admin.user.edit',
+    'middleware' => ['admin:super_admin', 'auth:admin'],
+    'uses' => 'AdministratorController@create'
+]);
+
+Route::get('/admin/user/activity', [
+    'as' => 'admin.user.activity',
+    'middleware' => ['admin:super_admin', 'auth:admin'],
+    'uses' => 'ActivityController@index'
 ]);

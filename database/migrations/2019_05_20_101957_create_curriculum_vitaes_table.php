@@ -15,6 +15,16 @@ class CreateCurriculumVitaesTable extends Migration
     {
         Schema::create('curriculum_vitaes', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('name');
+            $table->string('email');
+            $table->string('mobile')->nullable();
+            $table->string('address')->nullable();
+            $table->string('website')->nullable();
+            $table->string('proficiency')->nullable();
+            $table->integer('experience')->nullable();
+            $table->string('edu_level')->nullable();
+            $table->string('pro_qualification')->nullable();
+            $table->string('skill')->nullable();
             $table->timestamps();
         });
     }
