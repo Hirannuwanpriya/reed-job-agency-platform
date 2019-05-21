@@ -2,23 +2,21 @@
 
 namespace App\Models;
 
-use App\Models\Auth\User;
+use App\Models\Auth\Administrator;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 
-class CurriculumVitae extends Model
+class Activity extends Model
 {
     use Notifiable;
-
+    
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'mobile', 'address',
-        'website', 'proficiency', 'experience',
-        'edu_level', 'pro_qualification', 'skill',
+        'name', 'email', 'log', 'created_at'
     ];
 
 //    /**
@@ -38,15 +36,9 @@ class CurriculumVitae extends Model
 //    protected $casts = [
 //        'email_verified_at' => 'datetime',
 //    ];
-
-    public function vacancies()
-    {
-        return $this->belongsToMany(Vacancy::class);
-    }
     
-    public function users()
+    public function administrators()
     {
-        return $this->hasOne(User::class);
+        return $this->belongsToMany(Administrator::class);
     }
-
 }

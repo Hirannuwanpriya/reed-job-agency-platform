@@ -17,14 +17,14 @@ class CreateCurriculumVitaesTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('email');
-            $table->string('mobile');
-            $table->string('address');
-            $table->string('website');
-            $table->string('proficiency');
-            $table->integer('experience');
-            $table->string('edu_level');
-            $table->string('pro_qualification');
-            $table->string('skill');
+            $table->string('mobile')->nullable();
+            $table->string('address')->nullable();
+            $table->string('website')->nullable();
+            $table->string('proficiency')->nullable();
+            $table->integer('experience')->nullable();
+            $table->string('edu_level')->nullable();
+            $table->string('pro_qualification')->nullable();
+            $table->string('skill')->nullable();
             $table->timestamps();
         });
     }
