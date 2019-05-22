@@ -19,7 +19,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/curriculum-vitae', 'CurriculumVitaeController@index')->name('curriculum-vitae');
+Route::get('/curriculum-vitae/{id}', 'CurriculumVitaeController@show')->name('curriculum-vitae');
 
 Route::get('/curriculum-vitae/add', 'CurriculumVitaeController@create')->name('curriculum-vitae-add');
 

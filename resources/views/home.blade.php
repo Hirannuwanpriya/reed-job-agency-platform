@@ -15,7 +15,15 @@
                     @endif
 
                     You are logged in!
-                    <br>
+
+                        @foreach ($cvs as $cv)
+                            <p>This is user {{ $cv->id }}</p>
+                            <p>This is user {{ $cv->name }}</p>
+                            <a href="{{ url('/curriculum-vitae/'. $cv->id )}}" class="btn btn-primary">Show Cv</a>
+                            <br>
+                            <br>
+                        @endforeach
+
                     <a href="{{url('/curriculum-vitae/add')}}" class="btn btn-primary">Add Cv</a>
                     <br>
                     <br>

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\CurriculumVitae;
+use App\Models\CurriculumVitae;
 use Illuminate\Http\Request;
 
 class CurriculumVitaeController extends Controller
@@ -43,19 +43,23 @@ class CurriculumVitaeController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\CurriculumVitae  $curriculumVitae
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param $id
+     * @return void
      */
-    public function show(CurriculumVitae $curriculumVitae)
+    public function show(Request $request, $id)
     {
-        //
+        // Get Curriculum Vitae from it`s id
+        $cv = CurriculumVitae::find($id);
+
+        return view('cv/show', ['cv' => $cv]);
         
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\CurriculumVitae  $curriculumVitae
+     * @param CurriculumVitae $curriculumVitae
      * @return \Illuminate\Http\Response
      */
     public function edit(CurriculumVitae $curriculumVitae)
@@ -67,9 +71,9 @@ class CurriculumVitaeController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\CurriculumVitae  $curriculumVitae
-     * @return \Illuminate\Http\Response
+     * @param \Illuminate\Http\Request $request
+     * @param CurriculumVitae $curriculumVitae
+     * @return void
      */
     public function update(Request $request, CurriculumVitae $curriculumVitae)
     {
@@ -79,8 +83,8 @@ class CurriculumVitaeController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\CurriculumVitae  $curriculumVitae
-     * @return \Illuminate\Http\Response
+     * @param CurriculumVitae $curriculumVitae
+     * @return void
      */
     public function destroy(CurriculumVitae $curriculumVitae)
     {
