@@ -16,7 +16,7 @@ class CurriculumVitae extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'mobile', 'address',
+        'user_id', 'name', 'email', 'mobile', 'address',
         'website', 'proficiency', 'experience',
         'edu_level', 'pro_qualification', 'skill',
     ];
@@ -39,14 +39,19 @@ class CurriculumVitae extends Model
 //        'email_verified_at' => 'datetime',
 //    ];
 
-    public function vacancies()
-    {
-        return $this->belongsToMany(Vacancy::class);
-    }
+//    public function vacancy()
+//    {
+//        return $this->belongsToMany(Vacancy::class);
+//    }
     
-    public function users()
+    public function user()
     {
-        return $this->hasOne(User::class);
+        return $this->belongsTo(User::class);
+    }
+
+    public function vacancy()
+    {
+        return $this->hasMany(Vacancy::class);
     }
 
 }
