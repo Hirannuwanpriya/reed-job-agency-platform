@@ -18,6 +18,13 @@
 
                     <h1>Company List</h1>
                     <a href="{{url('admin/company/add')}}" class="btn btn-primary">Add Company</a>
+                        @foreach ($companies as $company)
+                            <p>This is user {{ $company->id }}</p>
+                            <p>This is user {{ $company->name }}</p>
+                            <a href="{{ url('/admin/company/edit/'. $company->id )}}" class="btn btn-primary">Edit Company</a>
+                            <br>
+                            <br>
+                        @endforeach
                 </div>
             </div>
         </div>

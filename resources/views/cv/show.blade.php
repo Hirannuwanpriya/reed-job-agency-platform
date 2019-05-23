@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+{{--@auth('web')--}}
+    {{--@extends('layouts.app_admin')--}}
+{{--@endauth--}}
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -21,6 +25,8 @@
                     <p>{{ $cv->user->email }}</p>
                     <p>{{ $cv->mobile }}</p>
                     <p>{{ $cv->website }}</p>
+
+                    <a href="{{url('/curriculum-vitae/generate/'. $cv->id)}}" class="btn btn-primary">Generate Cv</a>
                 </div>
             </div>
         </div>

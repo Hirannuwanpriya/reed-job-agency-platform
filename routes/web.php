@@ -11,6 +11,8 @@
 |
 */
 
+use Illuminate\Support\Facades\Artisan;
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -19,12 +21,13 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/curriculum-vitae/{id}', 'CurriculumVitaeController@show')->name('curriculum-vitae');
-
 Route::get('/curriculum-vitae/add', 'CurriculumVitaeController@create')->name('curriculum-vitae-add');
 
-Route::get('/curriculum-vitae/edit', 'CurriculumVitaeController@edit')->name('curriculum-vitae-edit');
+Route::get('/curriculum-vitae/edit/{id}', 'CurriculumVitaeController@edit')->name('curriculum-vitae-edit');
 
+Route::get('/curriculum-vitae/{id}', 'CurriculumVitaeController@show')->name('curriculum-vitae');
+
+Route::get('/curriculum-vitae/generate/{id}', 'CurriculumVitaeController@generateCv')->name('curriculum-vitae-generate');
 
 Route::get('/admin/login', [
     'as' => 'admin.login-form',
@@ -42,10 +45,12 @@ Route::get('/admin', [
 //    'middleware' => ['auth:admin'],
     'middleware' => ['admin:super_admin', 'auth:admin'],
     'uses' => function () {
+    
         return view('admin/home');
     }
 ]);
 
+// Company
 Route::get('/admin/company', [
     'as' => 'admin.company',
     'middleware' => ['admin:super_admin', 'auth:admin'],
@@ -58,10 +63,23 @@ Route::get('/admin/company/add', [
     'uses' => 'CompanyController@create'
 ]);
 
+Route::get('/admin/company/edit/{id}', [
+    'as' => 'admin.company.edit',
+    'middleware' => ['admin:super_admin', 'auth:admin'],
+    'uses' => 'CompanyController@edit'
+]);
+
+// Curriculum Vitae
 Route::get('/admin/curriculum-vitae', [
     'as' => 'admin.cv',
     'middleware' => ['admin:super_admin', 'auth:admin'],
     'uses' => 'AdminCurriculumVitaeController@index'
+]);
+
+Route::get('/admin/curriculum-vitae/{id}', [
+    'as' => 'admin.cv.show',
+    'middleware' => ['admin:super_admin', 'auth:admin'],
+    'uses' => 'AdminCurriculumVitaeController@show'
 ]);
 
 Route::get('/admin/vacancy', [

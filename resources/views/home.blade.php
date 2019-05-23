@@ -27,7 +27,7 @@
                     <a href="{{url('/curriculum-vitae/add')}}" class="btn btn-primary">Add Cv</a>
                     <br>
                     <br>
-                    <a href="{{url('/curriculum-vitae/edit')}}" class="btn btn-primary">Edit Cv</a>
+                    <a href="{{url('/curriculum-vitae/edit/'. $cv->id )}}" class="btn btn-primary">Edit Cv</a>
                 </div>
             </div>
         </div>

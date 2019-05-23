@@ -1,4 +1,4 @@
-@extends('layouts.app_admin')
+@extends('layouts.app')
 
 @section('content')
 <div class="container">
@@ -14,8 +14,14 @@
                         </div>
                     @endif
 
-                    You are logged in to Admin!
-                        <h1>Dashboard</h1>
+                    Show cv
+                    <p>{{ $cv->id }}</p>
+                    <p>{{ $cv->user->name }}</p>
+                    <p>{{ $cv->name }}</p>
+                    <p>{{ $cv->user->email }}</p>
+                    <p>{{ $cv->mobile }}</p>
+                    <p>{{ $cv->website }}</p>
+                        <a href="{{ url('/admin/company/edit/'. $cv->id )}}" class="btn btn-primary">Edit Cv</a>
                 </div>
             </div>
         </div>

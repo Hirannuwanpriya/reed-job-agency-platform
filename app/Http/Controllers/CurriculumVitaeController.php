@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\CurriculumVitae;
+use Dompdf\Dompdf;
 use Illuminate\Http\Request;
 
 class CurriculumVitaeController extends Controller
@@ -25,7 +26,7 @@ class CurriculumVitaeController extends Controller
      */
     public function create()
     {
-        //
+        
         return view('cv/create');
     }
 
@@ -62,10 +63,12 @@ class CurriculumVitaeController extends Controller
      * @param CurriculumVitae $curriculumVitae
      * @return \Illuminate\Http\Response
      */
-    public function edit(CurriculumVitae $curriculumVitae)
+    public function edit(Request $request, $id)
     {
-        //
-        return view('cv/edit');
+    
+        $cv = CurriculumVitae::find($id);
+        
+        return view('cv/edit', ['cv' => $cv]);
     }
 
     /**
@@ -89,5 +92,19 @@ class CurriculumVitaeController extends Controller
     public function destroy(CurriculumVitae $curriculumVitae)
     {
         //
+    }
+    
+    public function generateCv(Request $request, $id)
+    {
+        // instantiate and use the dompdf class
+        $dompdf = new Dompdf();
+    
+        $dompdf->loadHtml('hello world');
+        // (Optional) Setup the paper size and orientation
+        $dompdf->setPaper('A4', 'landscape');
+        // Render the HTML as PDF
+        $dompdf->render();
+        // Output the generated PDF to Browser
+        $dompdf->stream();
     }
 }
