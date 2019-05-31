@@ -52,9 +52,9 @@ class AdminCurriculumVitaeController extends Controller
     public function show(Request $request , $id)
     {
     
-        $cv = CurriculumVitae::find($id);
+        $cv = CurriculumVitae::findOrFail($id);
         
-        return view('cv.show', ['cv' => $cv]);
+        return view('admin.cv_show', ['cv' => $cv]);
     }
     
     /**
@@ -80,15 +80,20 @@ class AdminCurriculumVitaeController extends Controller
     {
         //
     }
-    
+
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\AdminCurriculumVitae  $AdminCurriculumVitae
+     * @param Request $request
+     * @param $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(AdminCurriculumVitae $AdminCurriculumVitae)
+    public function destroy(Request $request , $id)
     {
-        //
+        $cv = CurriculumVitae::findOrFail($id);
+
+        $cv->delete();
+
+        return redirect(route('admin.cv' ))->with('success', 'Curriculum Vitae has been Deleted.');
     }
 }

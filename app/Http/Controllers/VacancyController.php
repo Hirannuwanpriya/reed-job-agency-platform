@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Vacancy;
+use App\Models\Company;
+use App\Models\Vacancy;
 use Illuminate\Http\Request;
 
 class VacancyController extends Controller
@@ -14,8 +15,10 @@ class VacancyController extends Controller
      */
     public function index()
     {
-        //
-        return view('vacancy.list');
+    
+        $vacancies = Vacancy::all();
+        
+        return view('vacancy.list', ['vacancies' => $vacancies]);
     }
 
     /**
@@ -25,8 +28,9 @@ class VacancyController extends Controller
      */
     public function create()
     {
-        //
-        return view('vacancy.create');
+        $company = Company::all();
+
+        return view('vacancy.create', ['companies' => $company]);
     }
 
     /**
@@ -37,7 +41,20 @@ class VacancyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'company' => 'required',
+            'title' => 'required|max:255',
+        ]);
+
+        $vacancy = new Vacancy();
+
+        $vacancy->company_id = $request->input('company');
+        $vacancy->title = $request->input('title');
+        $vacancy->description = $request->input('description');
+
+        $vacancy->save();
+
+        return redirect(route('admin.vacancy.edit', $vacancy->id ))->with('success', 'Vacancy has been created.');
     }
 
     /**
@@ -57,9 +74,13 @@ class VacancyController extends Controller
      * @param  \App\Vacancy  $vacancy
      * @return \Illuminate\Http\Response
      */
-    public function edit(Vacancy $vacancy)
+    public function edit(Vacancy $vacancy, $id)
     {
-        //
+        $companies = Company::all();
+
+        $vacancy = Vacancy::findOrFail($id);
+
+        return view('vacancy.edit', ['vacancy' => $vacancy, 'companies' => $companies]);
     }
 
     /**
@@ -69,19 +90,33 @@ class VacancyController extends Controller
      * @param  \App\Vacancy  $vacancy
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Vacancy $vacancy)
+    public function update(Request $request, $id)
     {
-        //
+        $vacancy = Vacancy::findOrFail($id);
+
+        $vacancy->id = $id;
+        $vacancy->company_id = $request->input('company');
+        $vacancy->title = $request->input('title');
+        $vacancy->description = $request->input('description');
+
+        $vacancy->save();
+
+        return redirect(route('admin.vacancy.edit', $vacancy->id ))->with('success', 'Vacancy has been updated.');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Vacancy  $vacancy
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param $id
+     * @return void
      */
-    public function destroy(Vacancy $vacancy)
+    public function destroy(Request $request, $id)
     {
-        //
+        $vacancy = Vacancy::findOrFail($id);
+
+        $vacancy->delete();
+
+        return redirect(route('admin.vacancy' ))->with('success', 'Vacancy has been Deleted.');
     }
 }
