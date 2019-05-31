@@ -16,9 +16,15 @@ class CurriculumVitae extends Model
      * @var array
      */
     protected $fillable = [
-        'user_id', 'name', 'email', 'mobile', 'address',
-        'website', 'proficiency', 'experience',
-        'edu_level', 'pro_qualification', 'skill',
+        'user_id', 'first_name', 'last_name',
+        'designation', 'img', 'dob',
+        'gender', 'nationality', 'status',
+        'nic', 'address', 'mobile', 'email',
+        'website', 'linked_in', 'git_hub', 'twitter',
+        'summary', 'p_qualification', 'p_strengths',
+        'p_skills', 'personal_skills', 'eduction_qualification',
+        'employemnt_history', 'gcse_a_level', 'gcse_o_level',
+        'interests', 'achievements', 'references'
     ];
 
 //    /**
