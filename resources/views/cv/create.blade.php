@@ -14,7 +14,7 @@
                         </div>
                     @endif
 
-                    You are in CV create!
+                    You are in CV <h1>create!</h1>
                 </div>
             </div>
         </div>

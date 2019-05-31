@@ -14,7 +14,8 @@
                         </div>
                     @endif
 
-                    You are in CV create!
+                    You are in CV <h1>Edit!</h1>
+                        <a href="{{url('/curriculum-vitae/generate/'. $cv->id)}}" class="btn btn-primary">Generate Cv</a>
                 </div>
             </div>
         </div>

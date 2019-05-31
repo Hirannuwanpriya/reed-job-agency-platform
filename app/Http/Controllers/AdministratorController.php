@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Administrator;
+use App\Models\Auth\Administrator;
+use App\Models\Auth\User;
+use App\Models\CurriculumVitae;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class AdministratorController extends Controller
 {
@@ -14,8 +17,10 @@ class AdministratorController extends Controller
      */
     public function index()
     {
-        //
-        return view('user.list');
+        
+        $admins = Administrator::all();
+    
+        return view('admin.list',['admins' => $admins]);
     }
 
     /**
@@ -26,7 +31,7 @@ class AdministratorController extends Controller
     public function create()
     {
         //
-        return view('user.create');
+        return view('admin.create');
     }
 
     /**
@@ -37,39 +42,77 @@ class AdministratorController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
 
+        $validatedData = $request->validate([
+            'name' => 'required|max:255',
+            'email' => 'required|email|max:255',
+            'password' => 'required|max:255',
+        ]);
+
+        $admin = new Administrator();
+
+        $admin->name = $request->input('name');
+        $admin->email = $request->input('email');
+        $admin->password = Hash::make($request->input('password'));
+
+        $admin->save();
+
+        return redirect(route('admin.user.edit', $admin->id ))->with('success', 'User has been created.');
+
+    }
+    
     /**
      * Display the specified resource.
      *
-     * @param  \App\Administrator  $administrator
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param $id
+     * @return void
      */
-    public function show(Administrator $administrator)
+    public function show(Request $request, $id)
     {
-        //
+        
+        $admin = Administrator::findOrFail($id);
+        
+        return view('admin.edit', ['admin' => $admin]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Administrator  $administrator
+     * @param Request $request
+     * @param $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Administrator $administrator)
+    public function edit(Request $request, $id)
     {
-        //
+
+        $validatedData = $request->validate([
+            'name' => 'required|max:255',
+            'email' => 'required|email|max:255',
+            'password' => 'required|max:255',
+        ]);
+
+        $admin = Administrator::findOrFail($id);
+
+        $admin->id = $id;
+        $admin->name = $request->input('name');
+        $admin->email = $request->input('email');
+        $admin->password =  Hash::make($request->input('password'));
+
+        $admin->save();
+
+        return redirect(route('admin.user.edit', $admin->id ))->with('success', 'User has been updated.');
+
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Administrator  $administrator
+     * @param  \App\Models\Administrator  $administrator
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Administrator $administrator)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -77,11 +120,39 @@ class AdministratorController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Administrator  $administrator
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param $id
+     * @return void
      */
-    public function destroy(Administrator $administrator)
+    public function destroy(Request $request, $id)
     {
-        //
+        $admin = Administrator::findOrFail($id);
+
+        $admin->delete();
+
+        return redirect(route('admin.user' ))->with('success', 'User has been Deleted.');
+    }
+
+    public function userList()
+    {
+
+        $users = User::all();
+
+        return view('user.list',['users' => $users]);
+    }
+
+    /**
+     * @param Request $request
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function userDestroy(Request $request, $id)
+    {
+
+        $users = User::findOrFail($id);
+
+        $users->delete();
+
+        return redirect(route('user.list' ))->with('success', 'User has been Deleted.');
     }
 }

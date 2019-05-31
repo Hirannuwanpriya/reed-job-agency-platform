@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CompanyVacanciesTable extends Migration
+class CurriculumVitaeVacancy extends Migration
 {
     /**
      * Run the migrations.
@@ -13,19 +13,19 @@ class CompanyVacanciesTable extends Migration
      */
     public function up()
     {
-        Schema::create('company_vacancies', function (Blueprint $table) {
-            $table->bigInteger('company_id')
-                ->unsigned();
-
-            $table->foreign('company_id')->references('id')
-                ->on('companies')
-                ->onDelete('cascade');
-
+        Schema::create('curriculum_vitae_vacancy', function (Blueprint $table) {
             $table->bigInteger('vacancy_id')
                 ->unsigned();
-
+        
             $table->foreign('vacancy_id')->references('id')
                 ->on('vacancies')
+                ->onDelete('cascade');
+            
+            $table->bigInteger('curriculum_vitae_id')
+                ->unsigned();
+    
+            $table->foreign('curriculum_vitae_id')->references('id')
+                ->on('curriculum_vitaes')
                 ->onDelete('cascade');
         });
     }
@@ -37,6 +37,7 @@ class CompanyVacanciesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('company_vacancies');
+        Schema::dropIfExists('curriculum_vitae_vacancy');
     }
+    
 }

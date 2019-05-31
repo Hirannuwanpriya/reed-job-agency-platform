@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Auth\User;
+use App\Models\CurriculumVitae;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -23,6 +26,12 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        // Get the currently authenticated user
+        $user = Auth::user();
+        // Get Curriculum Vitaes that belongs to the user
+        $cvs =  $user->cv;
+
+        return view('home', ['cvs' => $cvs]);
     }
+
 }

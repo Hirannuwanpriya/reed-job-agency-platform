@@ -15,6 +15,7 @@
                     @endif
 
                     You are logged in to Admin!
+                        <h1>Dashboard</h1>
                 </div>
             </div>
         </div>

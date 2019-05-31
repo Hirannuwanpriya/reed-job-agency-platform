@@ -16,7 +16,14 @@
 
                     You are in CV create!
                     <h1>Curriculum Vitae List</h1>
-                        <a href="{{url('cv/generator')}}" class="btn btn-primary">Generate Cv</a>
+                        @foreach ($cvs as $cv)
+                            <p>This is user {{ $cv->id }}</p>
+                            <p>This is user {{ $cv->name }}</p>
+                            <a href="{{ url('/admin/curriculum-vitae/'. $cv->id )}}" class="btn btn-primary">Show Cv</a>
+                            <a href="{{url('/curriculum-vitae/generate/'. $cv->id)}}" class="btn btn-primary">Generate Cv</a>
+                            <br>
+                            <br>
+                        @endforeach
                 </div>
             </div>
         </div>

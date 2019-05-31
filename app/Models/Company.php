@@ -17,9 +17,9 @@ class Company extends Model
     protected $fillable = [
         'id','name', 'email', 'contact', 'created_at'
     ];
-
-    public function vacancies()
+    
+    public function vacancy()
     {
-        return $this->belongsToMany(Vacancy::class);
+        return $this->hasMany(Vacancy::class);
     }
 }

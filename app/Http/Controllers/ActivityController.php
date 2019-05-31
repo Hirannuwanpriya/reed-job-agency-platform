@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Activity;
+use App\Models\Activity;
 use Illuminate\Http\Request;
 
 class ActivityController extends Controller
@@ -14,8 +14,17 @@ class ActivityController extends Controller
      */
     public function index()
     {
-        //
-        return view('user.activity');
+        
+        $activities = Activity::all();
+        
+        $name = NULL;
+
+        if($activities->count() > 0) {
+        
+            $name = $activities->first()->administrator->name;
+        }
+        
+        return view('user.activity', ['activities' => $activities , 'name' => $name]);
     }
 
     /**

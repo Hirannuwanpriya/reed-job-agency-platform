@@ -37,8 +37,8 @@ class Activity extends Model
 //        'email_verified_at' => 'datetime',
 //    ];
     
-    public function administrators()
+    public function administrator()
     {
-        return $this->belongsToMany(Administrator::class);
+        return $this->belongsTo(Administrator::class);
     }
 }

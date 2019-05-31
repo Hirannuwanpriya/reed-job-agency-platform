@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CurriculumVitae;
 use Illuminate\Http\Request;
 
 class AdminCurriculumVitaeController extends Controller
@@ -13,8 +14,10 @@ class AdminCurriculumVitaeController extends Controller
      */
     public function index()
     {
-        //
-        return view('admin.cv_list');
+    
+        $cvs = CurriculumVitae::all();
+        
+        return view('admin.cv_list', ['cvs' => $cvs]);
     }
     
     /**
@@ -42,19 +45,22 @@ class AdminCurriculumVitaeController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\AdminCurriculumVitae  $AdminCurriculumVitae
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param $id
+     * @return void
      */
-    public function show(AdminCurriculumVitae $AdminCurriculumVitae)
+    public function show(Request $request , $id)
     {
-        //
+    
+        $cv = CurriculumVitae::findOrFail($id);
         
+        return view('admin.cv_show', ['cv' => $cv]);
     }
     
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\AdminCurriculumVitae  $AdminCurriculumVitae
+     * @param  \App\Models\AdminCurriculumVitae  $AdminCurriculumVitae
      * @return \Illuminate\Http\Response
      */
     public function edit(AdminCurriculumVitae $AdminCurriculumVitae)
@@ -67,22 +73,27 @@ class AdminCurriculumVitaeController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\AdminCurriculumVitae  $AdminCurriculumVitae
+     * @param  \App\Models\AdminCurriculumVitae  $AdminCurriculumVitae
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, AdminCurriculumVitae $AdminCurriculumVitae)
     {
         //
     }
-    
+
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\AdminCurriculumVitae  $AdminCurriculumVitae
+     * @param Request $request
+     * @param $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(AdminCurriculumVitae $AdminCurriculumVitae)
+    public function destroy(Request $request , $id)
     {
-        //
+        $cv = CurriculumVitae::findOrFail($id);
+
+        $cv->delete();
+
+        return redirect(route('admin.cv' ))->with('success', 'Curriculum Vitae has been Deleted.');
     }
 }

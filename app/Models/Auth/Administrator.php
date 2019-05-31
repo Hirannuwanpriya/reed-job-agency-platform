@@ -2,6 +2,7 @@
 
 namespace App\Models\Auth;
 
+use App\Models\Activity;
 use App\Models\UserRoles;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -41,5 +42,10 @@ class Administrator extends Authenticatable
     public function roles()
     {
         return $this->belongsToMany(UserRoles::class);
+    }
+    
+    public function activity()
+    {
+        return $this->hasMany(Activity::class);
     }
 }
