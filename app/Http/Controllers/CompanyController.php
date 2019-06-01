@@ -71,6 +71,21 @@ class CompanyController extends Controller
     public function update(Request $request, Company $company)
     {
         //
+        $validatedData = $request->validate([
+            'name' => 'required|max:255',
+            'email' => 'required|email|max:255',
+            'password' => 'required|max:255',
+        ]);
+
+        $admin = new Administrator();
+
+        $admin->name = $request->input('name');
+        $admin->email = $request->input('email');
+        $admin->password = Hash::make($request->input('password'));
+
+        $admin->save();
+
+        return redirect(route('admin.user.edit', $admin->id ))->with('success', 'User has been created.');
     }
 
     /**
